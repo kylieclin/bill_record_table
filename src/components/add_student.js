@@ -31,24 +31,24 @@ class AddStudent extends React.Component{
     }
     render(){
         const {col = 's12'} = this.props;
-        // const {name , course, grade} = this.state;
-        const inputs =['name', 'course', 'grade'];
-        const generateInput = inputs.map((element, index) =>{
-            return(
-                <div className="input-field" key={index}>
-                    <input name={element} autoComplete="off" id={element} type="text" value={this.state[element]} onChange={this.handleInput}maxLength="10" required/>
-                    <label htmlFor={element}>{element}</label>   
-                </div>
-            )
-        });
+        const {name , course, grade} = this.state;
+        // const inputs =['name', 'course', 'grade'];
+        // const generateInput = inputs.map((element, index) =>{
+        //     return(
+        //         <div className="input-field" key={index}>
+        //             <input className="grey-text text-darken-3" name={element} autoComplete="off" id={element} type="text" value={this.state[element]} onChange={this.handleInput}maxLength="10" required/>
+        //             <label htmlFor={element}>{element}</label>   
+        //         </div>
+        //     )
+        // });
 
         return(
             <div className={`col ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
                     <div className="center">Add Student</div>
-                    {generateInput}
+                    {/* {generateInput} */}
 
-                    {/* <div className="input-field">
+                    <div className="input-field">
                         <input name="name" autoComplete="off" id="name" type="text" value={name} onChange={this.handleInput} maxLength="10" required/>
                         <label htmlFor="name">Student Name</label>   
                     </div>
@@ -59,7 +59,7 @@ class AddStudent extends React.Component{
                     <div className="input-field">
                         <input name="grade" autoComplete="off" id="grade" type="text" value={grade} onChange={this.handleInput} maxLength="10" required/>
                         <label htmlFor="grade">Grade</label>   
-                    </div> */}
+                    </div>
                     <button className="btn green">Add Student</button>
                 </form> 
             </div>
