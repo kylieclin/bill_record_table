@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
-
+import StudentRow from './student_row';
 
 class StudentsTable extends Component {
+
     render(){
-        const { col = 's12', list } = this.props;
-        const studentElements = list.map((element, index, originArr)=>{
-            return(
-                <tr key={element.id}>
-                        <td>{element.name}</td>
-                        <td>{element.course}</td>
-                        <td>{element.grade}</td>
-                        <td><button className="waves-effect waves-light btn">Delete</button></td>
-                </tr>
-            )
+        const { col = 's12', list, deleteStudent } = this.props;
+        const studentElements = list.map((student)=>{ // on next line {...student} = props
+            return <StudentRow {...student} key={student.id} deleteStudent={deleteStudent} />
         })
 
         return (
@@ -23,7 +17,7 @@ class StudentsTable extends Component {
                             <th>Name</th>
                             <th>Course</th>
                             <th>Grade</th>
-                            <th>Delete Student</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
