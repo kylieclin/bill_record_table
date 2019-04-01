@@ -16,6 +16,7 @@ class App extends Component{
             studentsList: []
         }
         this.addStudent = this.addStudent.bind(this);
+        this.deleteStudent = this.deleteStudent.bind(this);
     }
     addStudent(student){
         student.id = id++;
@@ -34,13 +35,26 @@ class App extends Component{
             studentsList: studentsList
         })
     }
+    deleteStudent(id){
+        const studentCopy = this.state.studentsList.slice();
+        const index = studentCopy.findIndex((student)=>{
+            return student.id === id;
+        })
+        if(index > -1){
+            studentCopy.splice(index, 1); 
+            this.setState({
+            studentsList: [...studentCopy]
+            })
+        }
+
+    }
     render(){
         return(
             <div>
                 <h1 className='center'>React SGT</h1>
                 <div className="row">
 
-                    <StudentsTable list={this.state.studentsList} col="col s12 m8"/>
+                    <StudentsTable list={this.state.studentsList} deleteStudent={this.deleteStudent}col="col s12 m8"/>
                     <AddStudent col="col s12 m4" callBack={this.addStudent}/>
 
                 </div>
