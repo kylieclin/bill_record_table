@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Student grade table project build by ReactJS",
   "main": "index.js",
-  "proxy":{
-    "/api/*":{
+  "proxy": {
+    "/api/*": {
       "target": "http://localhost:3001"
     }
   },

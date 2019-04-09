@@ -62,7 +62,10 @@ class AddStudent extends React.Component{
                         <label htmlFor="">Select Payment Type</label>
                     </div>
                     <button className="btn green">Add Record</button>
-                </form> 
+                </form>
+                <div>
+                    <button className="btn green darken-3">Calcs</button>
+                </div>
             </div>
         )
     }
