@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import StudentRow from './student_row';
+import BillRow from './student_row';
 
-class StudentsTable extends Component {
+class BillsTable extends Component {
 
     render(){
-        const { col = 's12', list, deleteStudent } = this.props;
-        const studentElements = list.map((student)=>{ // on next line {...student} = props
-            return <StudentRow {...student} key={student.id} deleteStudent={deleteStudent} />
+        const { col = 's12', list, deleteBill } = this.props;
+        const bills = list.map((bill)=>{ // on next line {...student} = props
+            return <BillRow {...bill} key={bill.id} deleteBill={deleteBill} />
         })
 
         return (
@@ -17,11 +17,12 @@ class StudentsTable extends Component {
                             <th>Pay To</th>
                             <th>Type</th>
                             <th>Amount</th>
+                            <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {studentElements}
+                        {bills}
                     </tbody>
                 </table>
             </div>
@@ -29,4 +30,4 @@ class StudentsTable extends Component {
     }
 }
 
-export default StudentsTable;
+export default BillsTable;

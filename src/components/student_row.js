@@ -1,14 +1,16 @@
 import React from 'react';
 
 export default props =>{
-        const {name, type, grade, id, deleteStudent} = props
+        const {name, type, amount, id, deleteBill } = props;
+        const date = 'today';
         return(
             <tr>
                 <td>{name}</td>
                 <td>{type}</td>
-                <td>{grade}</td>
+                <td>{amount}</td>
+                <td>{date}</td>
                 <td>
-                    <button onClick={()=>{deleteStudent(id)}} className="waves-effect waves-light btn btn-floating red darken-2">
+                    <button onClick={()=>{deleteBill(id)}} className="waves-effect waves-light btn btn-floating red darken-2">
                         <i className="material-icons">delete_forever</i>
                     </button>
                 </td>
