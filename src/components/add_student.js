@@ -5,8 +5,8 @@ class AddStudent extends React.Component{
         super(props);
         this.state = {
             name: '',
-            course: '',
-            grade: ''
+            amount: '',
+            type: ''
         }
         
 
@@ -25,42 +25,43 @@ class AddStudent extends React.Component{
         
         this.setState({
             name: '',
-            course: '',
-            grade: ''
+            amount: ''
         })
+    }
+    handleSelect(event){
+        this.setState({
+            type: event.target.value
+        })
+    }
+    componentDidMount(){
+        M.FormSelect.init(this.formSelect);
     }
     render(){
         const {col = 's12'} = this.props;
-        const {name , course, grade} = this.state;
-        // const inputs =['name', 'course', 'grade'];
-        // const generateInput = inputs.map((element, index) =>{
-        //     return(
-        //         <div className="input-field" key={index}>
-        //             <input className="grey-text text-darken-3" name={element} autoComplete="off" id={element} type="text" value={this.state[element]} onChange={this.handleInput}maxLength="10" required/>
-        //             <label htmlFor={element}>{element}</label>   
-        //         </div>
-        //     )
-        // });
+        const {name , amount} = this.state;
 
         return(
             <div className={`col ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
-                    <div className="center">Add Student</div>
-                    {/* {generateInput} */}
+                    <div className="center">Add Paid Bill</div>
 
                     <div className="input-field">
                         <input name="name" autoComplete="off" id="name" type="text" value={name} onChange={this.handleInput} maxLength="10" required/>
-                        <label htmlFor="name">Student Name</label>   
+                        <label htmlFor="name">Pay To</label>   
                     </div>
                     <div className="input-field">
-                        <input name="course" autoComplete="off" id="course" type="text" value={course} onChange={this.handleInput} maxLength="10" required/>
-                        <label htmlFor="course">Course</label>   
+                        <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="10" required/>
+                        <label htmlFor="amount">Amount</label>   
                     </div>
                     <div className="input-field">
-                        <input name="grade" autoComplete="off" id="grade" type="text" value={grade} onChange={this.handleInput} maxLength="10" required/>
-                        <label htmlFor="grade">Grade</label>   
+                        <select defaultValue="" onChange={this.handleSelect} ref={(element)=>{this.formSelect = element}}>
+                            <option value="credit">Credit Card</option>
+                            <option value="cash">Cash</option>
+                            <option value="Check">Check</option>
+                        </select>
+                        <label htmlFor="">Select Payment Type</label>
                     </div>
-                    <button className="btn green">Add Student</button>
+                    <button className="btn green">Add Record</button>
                 </form> 
             </div>
         )

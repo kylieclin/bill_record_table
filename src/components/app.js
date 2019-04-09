@@ -59,7 +59,7 @@ class App extends Component{
     render(){
         return(
             <div>
-                <h1 className='center'>React SGT</h1>
+                <h1 className='center'>Bill Pay Record</h1>
                 <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
                 <div className="row">
                     <StudentsTable list={this.state.studentsList} deleteStudent={this.deleteStudent}col="col s12 m8"/>

@@ -14,9 +14,9 @@ class StudentsTable extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Course</th>
-                            <th>Grade</th>
+                            <th>Pay To</th>
+                            <th>Type</th>
+                            <th>Amount</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
