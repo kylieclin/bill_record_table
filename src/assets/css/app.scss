@@ -5,3 +5,32 @@
     position: relative;
 }
 
+.page-header{
+    margin: 0.5em;
+}
+
+.add-bills{
+
+
+    .add-header{
+        padding: 1.0933333333rem 0 .656rem 0;
+        margin: 0 auto;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+}
+
+.bill-table{
+ 
+}
+
+th, tr, td{
+    border-radius: 0;
+}
+
+tr{
+    &:hover{
+        background-color: #cfd8dc;
+    }
+}
+

@@ -38,7 +38,7 @@ server.post('/api/bills',(req, res)=>{
             return;
         }
         
-        const query = 'INSERT INTO `bills` SET `payfrom`="'+payfrom+'", `payto`="'+payto+'", `type`="'+type+'", `amount`='+amount+', `added`=NOW(), `paid`=0, `note`="'+note+'"';
+        const query = 'INSERT INTO `bills` SET `payfrom`="'+payfrom+'", `payto`="'+payto+'", `type`="'+type+'", `amount`='+amount*100+', `added`=NOW(), `paid`=0, `note`="'+note+'"';
         database.query(query,(error,result)=>{
             if(!error){
                 res.send({

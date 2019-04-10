@@ -3,8 +3,8 @@ import 'materialize-css/dist/js/materialize.min';
 import '../assets/css/app.scss'; //no matter where import style sheet it apply to the entire project
 import React, {Component} from 'react';
 import axios from 'axios';
-import BillsTable from './students_table';
-import AddBill from './add_student';
+import BillsTable from './bills_table';
+import AddBill from './add_bill';
 
 class App extends Component{
     constructor(props){
@@ -71,11 +71,14 @@ class App extends Component{
     render(){
         return(
             <div>
-                <h1 className='center'>Bill Pay Record</h1>
+                <div className="header-box">
+                    <h2 className='center page-header  blue-grey-text text-darken-4'>Bill Payment Record Table</h2>
+                </div>
+                
                 <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
                 <div className="row">
-                    <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox}col="col s12 m8"/>
-                    <AddBill col="col s12 m4" callBack={this.addBill}/>
+                    <AddBill col="col s12 m3" callBack={this.addBill}/>
+                    <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox} col="col s12 m9"/>  
                 </div>
 
             </div>

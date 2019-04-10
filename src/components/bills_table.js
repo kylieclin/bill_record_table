@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import BillRow from './student_row';
+import BillRow from './bill_row';
 
 class BillsTable extends Component {
 
@@ -10,18 +10,18 @@ class BillsTable extends Component {
         })
 
         return (
-            <div className={`col ${col}`}>
+            <div className={`bill-table ${col}`}>
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="blue-grey lighten-5 blue-grey-text text-darken-3">
                             <th>Pay From</th>
                             <th>Pay To</th>
                             <th>Type</th>
-                            <th>Amount</th>
-                            <th>Date</th>
-                            <th>Paid</th>
+                            <th>Amount</th>                            
                             <th>Note</th>
-                            <th>Actions</th>
+                            <th>Date Added</th>
+                            <th>Complete</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>

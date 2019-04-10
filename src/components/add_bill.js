@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AddStudent extends React.Component{
+class AddBill extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -16,7 +16,8 @@ class AddStudent extends React.Component{
         this.handleSelect = this.handleSelect.bind(this);
     }
     handleInput(event){
-        const { name, value} =event.target
+        const { name, value} =event.target;
+
         this.setState({
              [name]:value
         })
@@ -24,13 +25,21 @@ class AddStudent extends React.Component{
     handleSubmit(event){
         event.preventDefault();
         const {payfrom, payto, amount, type} =this.state;
-        if(payfrom && payto && amount && type !== 'default' ){
+
+        if(payfrom && payto && !isNaN(amount) && type !== 'default' ){
             this.props.callBack({...this.state});
             this.resetInputs();
         } else {
-            this.setState({
-                error: 'Please complete the inputs.'
-            })
+            if(type === 'default'){
+                this.setState({
+                error: 'Please select payment type'
+                }) 
+            } else {
+                this.setState({
+                    error: 'Please input numbers for amount',
+                    amount: ''
+                }) 
+            }
         }
         
     }
@@ -58,9 +67,9 @@ class AddStudent extends React.Component{
         const {payfrom, payto , amount, error, type, note} = this.state;
 
         return(
-            <div className={`col ${col}`}>
+            <div className={`add-bills ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
-                    <div className="center">Add Paid Bill</div>
+                    <div className="center"><h5 className="teal lighten-4 add-header blue-grey-text text-darken-3">Add Bills</h5></div>
                     
                     <div className="input-field">
                         <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
@@ -75,27 +84,29 @@ class AddStudent extends React.Component{
                         <label htmlFor="amount">Amount</label>   
                     </div>
                     <div className="input-field">
-                    <h6 className="red-text">{error}</h6>
+                    
                         <select value={type} name="type" onChange={this.handleSelect} ref={(element)=>{this.formSelect = element}} required>
                             <option value="default" disabled>Select Type</option>
-                            <option value="credit">Credit Card</option>
-                            <option value="cash">Cash</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Cash">Cash</option>
                             <option value="Check">Check</option>
+                            <option value="Wire">Wire</option>
                         </select>
                         <label htmlFor="">Select Payment Type</label>
                     </div>
                     <div className="input-field">
-                        <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="20" required/>
+                        <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="20"/>
                         <label htmlFor="note">Note</label>   
                     </div>
-                    <button className="btn green">Add Record</button>
+                    <h6 className="red-text">{error}</h6>
+                    <button className="btn teal lighten-2">Add Record</button>
                 </form>
                 <div>
-                    <button className="btn green darken-3">Calcs</button>
+                    {/* <button className="btn green darken-3">Calcs</button> */}
                 </div>
             </div>
         )
     }
 }
 
-export default AddStudent;
+export default AddBill;
