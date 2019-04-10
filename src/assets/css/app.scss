@@ -1,1 +1,7 @@
 
+[type="checkbox"]:checked, td>#checkbox{ 
+    opacity: 1; 
+    pointer-events: auto;
+    position: relative;
+}
+

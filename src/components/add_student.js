@@ -4,9 +4,11 @@ class AddStudent extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            name: '',
+            payfrom: '',
+            payto: '',
             amount: '',
             type: 'default',
+            note:'',
             error: ''
         }
         this.handleInput = this.handleInput.bind(this);
@@ -21,8 +23,8 @@ class AddStudent extends React.Component{
     }
     handleSubmit(event){
         event.preventDefault();
-        const {name, amount, type} =this.state;
-        if(name && amount && type !== 'default' ){
+        const {payfrom, payto, amount, type} =this.state;
+        if(payfrom && payto && amount && type !== 'default' ){
             this.props.callBack({...this.state});
             this.resetInputs();
         } else {
@@ -34,9 +36,12 @@ class AddStudent extends React.Component{
     }
     resetInputs(){
         this.setState({
-            name: '',
+            payfrom: '',
+            payto: '',
             amount: '',
-            type: 'default'
+            type: 'default',
+            note:'',
+            error:''
         }, () => M.FormSelect.init(this.formSelect));
     }
     handleSelect(event){
@@ -50,22 +55,27 @@ class AddStudent extends React.Component{
     }
     render(){
         const {col = 's12'} = this.props;
-        const {name , amount, error, type} = this.state;
+        const {payfrom, payto , amount, error, type, note} = this.state;
 
         return(
             <div className={`col ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
                     <div className="center">Add Paid Bill</div>
-                    <h6 className="text-red">{error}</h6>
+                    
                     <div className="input-field">
-                        <input name="name" autoComplete="off" id="name" type="text" value={name} onChange={this.handleInput} maxLength="10" required/>
-                        <label htmlFor="name">Pay To</label>   
+                        <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
+                        <label htmlFor="payfrom">Pay From</label>   
                     </div>
                     <div className="input-field">
-                        <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="10" required/>
+                        <input name="payto" autoComplete="off" id="payto" type="text" value={payto} onChange={this.handleInput} maxLength="20" required/>
+                        <label htmlFor="payto">Pay To</label>   
+                    </div>
+                    <div className="input-field">
+                        <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>
                         <label htmlFor="amount">Amount</label>   
                     </div>
                     <div className="input-field">
+                    <h6 className="red-text">{error}</h6>
                         <select value={type} name="type" onChange={this.handleSelect} ref={(element)=>{this.formSelect = element}} required>
                             <option value="default" disabled>Select Type</option>
                             <option value="credit">Credit Card</option>
@@ -73,6 +83,10 @@ class AddStudent extends React.Component{
                             <option value="Check">Check</option>
                         </select>
                         <label htmlFor="">Select Payment Type</label>
+                    </div>
+                    <div className="input-field">
+                        <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="20" required/>
+                        <label htmlFor="note">Note</label>   
                     </div>
                     <button className="btn green">Add Record</button>
                 </form>

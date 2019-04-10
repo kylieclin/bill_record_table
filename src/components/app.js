@@ -16,11 +16,11 @@ class App extends Component{
         }
         this.addBill = this.addBill.bind(this);
         this.deleteBill = this.deleteBill.bind(this);
+        this.checkbox = this.checkbox.bind(this);
     }
     async addBill(data){
-        console.log(data);
         try{
-            await axios.post('/api/grades', data);
+            await axios.post('/api/bills', data);
             this.getBillsData();
         } catch (err){
             this.errorHandle();
@@ -32,8 +32,8 @@ class App extends Component{
     }
     async getBillsData(){
         try{
-            const resp = await axios.get('/api/grades'); // origin go to dev_sever and then direct to proxy in package.json
-
+            const resp = await axios.get('/api/bills');
+            console.log(resp)
             if(resp.data.success){
                 this.setState({
                     billsList: resp.data.data
@@ -45,9 +45,21 @@ class App extends Component{
     }
     async deleteBill(id){
         try{
-            await axios.delete(`/api/grades/${id}`);
+            await axios.delete(`/api/bills/${id}`);
             this.getBillsData();
         }catch (err){
+            this.errorHandle();
+        }
+    }
+    async checkbox(id, event){
+        const data ={
+            id: id,
+            paid: event.target.checked? 1:0
+        }
+        try{
+            await axios.post(`/api/bills/update`, data);
+            this.getBillsData();
+        } catch(error){
             this.errorHandle();
         }
     }
@@ -62,9 +74,8 @@ class App extends Component{
                 <h1 className='center'>Bill Pay Record</h1>
                 <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
                 <div className="row">
-                    <BillsTable list={this.state.billsList} deleteBill={this.deleteBill}col="col s12 m8"/>
+                    <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox}col="col s12 m8"/>
                     <AddBill col="col s12 m4" callBack={this.addBill}/>
-
                 </div>
 
             </div>
