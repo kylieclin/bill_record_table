@@ -19,7 +19,6 @@ class BillsTable extends Component {
                             <th>Type</th>
                             <th>Amount</th>                            
                             <th>Note</th>
-                            <th>Date Added</th>
                             <th>Complete</th>
                             <th>Delete</th>
                         </tr>

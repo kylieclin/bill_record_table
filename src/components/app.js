@@ -33,6 +33,7 @@ class App extends Component{
     async getBillsData(){
         try{
             const resp = await axios.get('/api/bills');
+            console.log(resp)
             if(resp.data.success){
                 this.setState({
                     billsList: resp.data.data
