@@ -1,12 +1,12 @@
-# React SGT
+# React Bill Record Table
 
-> Student Grade Table build by ReactJS
+> Bill Record Table build by ReactJS
 
 ### Setup Instructions
 
 > 1. Fork this repo
 > 1. Clone your forked copy of this repo
->    - `git clone https://github.com/kylieclin/react_sgt.git`
+>    - `git clone https://github.com/kylieclin/bill_record_table.git`
 > 1. Change directory into the newly cloned repo
 >    - `cd react_sgt`
 > 1. Install dependencies 
