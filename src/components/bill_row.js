@@ -10,13 +10,13 @@ export default props =>{
                 <td>{payfrom}</td>
                 <td>{payto}</td>
                 <td>{type}</td>
-                <td>{amount/100}</td>
+                <td>$ {(amount/100).toFixed(2)}</td>
                 <td>{note}</td>                
                 <td className="center">{date}</td>
                 <td className="center">{status}</td>
                 <td>
                     <button onClick={()=>{deleteBill(id)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
-                        <i className="material-icons">delete</i>
+                    <i className="fas fa-trash-alt"></i>
                     </button>
                 </td>
             </tr>

@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import Calc from './calculator';
 
 class AddBill extends React.Component{
     constructor(props){
@@ -9,17 +10,23 @@ class AddBill extends React.Component{
             amount: '',
             type: 'default',
             note:'',
-            error: ''
+            error: '',
+            message: '',
+            modalOpen: false
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
+        this.openCalc = this.openCalc.bind(this);
+        this.closeCalc = this.closeCalc.bind(this);
+        this.getAmontFromCalc = this.getAmontFromCalc.bind(this);
     }
     handleInput(event){
         const { name, value} =event.target;
 
         this.setState({
-             [name]:value
+             [name]:value,
+             message: ''
         })
     }
     handleSubmit(event){
@@ -29,6 +36,9 @@ class AddBill extends React.Component{
         if(payfrom && payto && !isNaN(amount) && type !== 'default' ){
             this.props.callBack({...this.state});
             this.resetInputs();
+            this.setState({
+                message: 'Bill record added'
+            })
         } else {
             if(type === 'default'){
                 this.setState({
@@ -59,18 +69,38 @@ class AddBill extends React.Component{
             type: event.target.value
         })
     }
+    openCalc(){
+        this.setState({
+            modalOpen: true
+        })
+    }
+    closeCalc(){
+        this.setState({
+            modalOpen: false
+        })
+    }
+    getAmontFromCalc(number){
+        if(number){
+            this.setState({
+            modalOpen: false,
+            amount: number
+            }) 
+        } 
+    }
     componentDidMount(){
         M.FormSelect.init(this.formSelect);
     }
     render(){
         const {col = 's12'} = this.props;
-        const {payfrom, payto , amount, error, type, note} = this.state;
+        const {payfrom, payto , amount, error, type, note, message, modalOpen} = this.state;
 
         return(
+            <Fragment>
             <div className={`add-bills ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
-                    <div className="center"><h5 className="teal lighten-4 add-header blue-grey-text text-darken-3">Add Bills</h5></div>
-                    
+                    <div className="center addbill-header">
+                        <h5 className="teal lighten-4 add-header blue-grey-text text-darken-3" title="Add Bills">Add Bill</h5>
+                    </div>
                     <div className="input-field">
                         <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
                         <label htmlFor="payfrom">Pay From</label>   
@@ -80,8 +110,8 @@ class AddBill extends React.Component{
                         <label htmlFor="payto">Pay To</label>   
                     </div>
                     <div className="input-field">
-                        <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>
-                        <label htmlFor="amount">Amount</label>   
+                        <label htmlFor="amount">Amount</label> 
+                        <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
                     </div>
                     <div className="input-field">
                     
@@ -95,16 +125,17 @@ class AddBill extends React.Component{
                         <label htmlFor="">Select Payment Type</label>
                     </div>
                     <div className="input-field">
-                        <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="20"/>
+                        <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
                         <label htmlFor="note">Note</label>   
                     </div>
+                    <h6 className="teal-text">{message}</h6>
                     <h6 className="red-text">{error}</h6>
-                    <button className="btn teal lighten-2">Add Record</button>
-                </form>
-                <div>
-                    {/* <button className="btn green darken-3">Calcs</button> */}
-                </div>
+                    <div className="btn teal lighten-2" onClick={this.openCalc} title="Open calculator"><i className="fas fa-calculator"></i></div>
+                    <button className="btn teal lighten-1" title="Add record to table"><i className="fas fa-file-invoice-dollar"></i> Add</button>
+                </form>  
             </div>
+            <Calc modalOpen={modalOpen}  close={this.closeCalc}getAmount={this.getAmontFromCalc}/>
+            </Fragment>
         )
     }
 }

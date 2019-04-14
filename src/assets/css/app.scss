@@ -1,3 +1,7 @@
+body{
+    color: #263238;
+}
+
 
 [type="checkbox"]:checked, td>#checkbox{ 
     opacity: 1; 
@@ -7,30 +11,56 @@
 
 .page-header{
     margin: 0.5em;
+    border-bottom: 1px solid rgb(203, 234, 235)
+}
+
+.header-box{
+    h4{
+        display:none
+    }
 }
 
 .add-bills{
 
 
     .add-header{
-        padding: 1.0933333333rem 0 .656rem 0;
+        padding: 0.6rem 0 .656rem 0;
         margin: 0 auto;
         font-size: 1.3em;
         font-weight: bold;
+        line-height: 25px;
+    }
+
+    .btn{
+        margin: 10px 5px;
     }
 }
 
 .bill-table{
- 
+    margin-bottom: 20px;
+    overflow-x: auto;
+
+    th, tr, td{
+        border-radius: 0;
+    }
+    
+    tr{
+        &:hover{
+            background-color: #cfd8dc;
+        }
+    }
+    
+
 }
 
-th, tr, td{
-    border-radius: 0;
-}
+@media (max-width: 420px){
+    .header-box{
+        h2{
+            display:none
+        }
 
-tr{
-    &:hover{
-        background-color: #cfd8dc;
+        h4{
+            display: block;
+        }
     }
 }
-

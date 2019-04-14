@@ -33,7 +33,6 @@ class App extends Component{
     async getBillsData(){
         try{
             const resp = await axios.get('/api/bills');
-            console.log(resp)
             if(resp.data.success){
                 this.setState({
                     billsList: resp.data.data
@@ -72,13 +71,14 @@ class App extends Component{
         return(
             <div>
                 <div className="header-box">
-                    <h2 className='center page-header  blue-grey-text text-darken-4'>Bill Payment Record Table</h2>
+                    <h2 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h2>
+                    <h4 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h4>
                 </div>
                 
                 <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
                 <div className="row">
-                    <AddBill col="col s12 m3" callBack={this.addBill}/>
                     <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox} col="col s12 m9"/>  
+                    <AddBill col="col s12 m3" callBack={this.addBill}/>
                 </div>
 
             </div>

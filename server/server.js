@@ -61,7 +61,7 @@ server.post('/api/bills/update', (req,res)=>{
         if(req.body.id === undefined){
             res.send({
                 success: false,
-                message: 'must have an id to delete item'
+                message: 'Unable to make change'
             })
             return;
         }

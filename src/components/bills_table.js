@@ -13,7 +13,7 @@ class BillsTable extends Component {
             <div className={`bill-table ${col}`}>
                 <table>
                     <thead>
-                        <tr className="blue-grey lighten-5 blue-grey-text text-darken-3">
+                        <tr className="teal lighten-4 blue-grey-text text-darken-3">
                             <th>Pay From</th>
                             <th>Pay To</th>
                             <th>Type</th>
