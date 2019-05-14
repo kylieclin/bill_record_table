@@ -14,6 +14,7 @@ class BillsTable extends Component {
                 <table>
                     <thead>
                         <tr className="teal lighten-4 blue-grey-text text-darken-3">
+                            <th>Date</th>
                             <th>Pay From</th>
                             <th>Pay To</th>
                             <th>Type</th>

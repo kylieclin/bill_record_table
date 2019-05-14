@@ -75,7 +75,6 @@ class App extends Component{
                     <h2 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h2>
                     <h4 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h4>
                 </div>
-                
                 <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
                 <div className="row">
                     <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox} col="col s12 m9"/>  

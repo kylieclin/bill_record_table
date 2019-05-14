@@ -38,8 +38,9 @@ server.post('/api/bills',(req, res)=>{
             return;
         }
         
-        const query = 'INSERT INTO `bills` SET `payfrom`="'+payfrom+'", `payto`="'+payto+'", `type`="'+type+'", `amount`='+amount*100+', `added`=NOW(), `paid`=0, `note`="'+note+'"';
-        database.query(query,(error,result)=>{
+        const query = 'INSERT INTO `bills` SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `added`=NOW(), `paid`=0, `note`=?';
+
+        database.query(query, [payfrom, payto, type, amount*100, note],(error,result)=>{
             if(!error){
                 res.send({
                     success: true,
@@ -66,9 +67,9 @@ server.post('/api/bills/update', (req,res)=>{
             return;
         }
         const {id, paid} = req.body
-        const query ='UPDATE `bills` SET `paid` ='+paid+' WHERE `bills`.`id` ='+id+'';
+        const query ='UPDATE `bills` SET `paid` =? WHERE `bills`.`id` =?';
 
-        database.query(query,(error)=>{
+        database.query(query,[paid, id],(error)=>{
             if(!error){
                 res.send({
                     success: true

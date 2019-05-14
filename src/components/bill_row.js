@@ -1,11 +1,13 @@
 import React from 'react';
+import {formatDate} from './helper';
 
-export default props =>{
+const billRows = props =>{
         const {payfrom, payto, type, amount, paid, id, added, deleteBill, note } = props;
         const status = paid? <input id="checkbox" onChange={props.checkbox.bind(this, id)} type="checkbox" defaultChecked/> : <input id="checkbox"  onChange={props.checkbox.bind(this, id)} type="checkbox" /> ;
     
         return(
             <tr>
+                <td>{formatDate(added)}</td>
                 <td>{payfrom}</td>
                 <td>{payto}</td>
                 <td>{type}</td>
@@ -14,7 +16,7 @@ export default props =>{
                 <td className="center">{status}</td>
                 <td>
                     <button onClick={()=>{deleteBill(id)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
-                    <i className="fas fa-trash-alt"></i>
+                        <i className="fas fa-trash-alt"></i>
                     </button>
                 </td>
             </tr>
@@ -22,4 +24,4 @@ export default props =>{
 
 }
 
-//onClick={()=>{deleteStudent(id)}} if we have to pass in parameters we have to use a function to warp it
+export default billRows;
