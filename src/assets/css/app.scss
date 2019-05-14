@@ -38,7 +38,6 @@ body{
 
 .bill-table{
     margin-bottom: 20px;
-    overflow-x: auto;
 
     th, tr, td{
         border-radius: 0;
@@ -53,7 +52,7 @@ body{
 
 }
 
-@media (max-width: 420px){
+@media (max-width: 720px){
     .header-box{
         h2{
             display:none
@@ -62,5 +61,14 @@ body{
         h4{
             display: block;
         }
+    }
+
+    .bill-table{
+
+        th:nth-child(n+6), td:nth-child(n+6){
+            display: none;
+        }
+
+        
     }
 }
