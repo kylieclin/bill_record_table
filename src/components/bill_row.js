@@ -2,7 +2,7 @@ import React from 'react';
 import {formatDate} from './helper';
 
 const billRows = props =>{
-        const {payfrom, payto, type, amount, paid, id, added, deleteBill, note } = props;
+        const {payfrom, payto, type, amount, paid, id, added, toggleModal, note } = props;
         const status = paid? <input id="checkbox" onChange={props.checkbox.bind(this, id)} type="checkbox" defaultChecked/> : <input id="checkbox"  onChange={props.checkbox.bind(this, id)} type="checkbox" /> ;
     
         return(
@@ -15,7 +15,7 @@ const billRows = props =>{
                 <td>{note}</td>                
                 <td className="center">{status}</td>
                 <td>
-                    <button onClick={()=>{deleteBill(id)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
+                    <button onClick={()=>{toggleModal(props)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
                         <i className="fas fa-edit"></i>
                     </button>
                 </td>
@@ -23,5 +23,5 @@ const billRows = props =>{
         )
 
 }
-
+//onclick modal fill in all the data , modal has btn for delete or update
 export default billRows;

@@ -64,7 +64,6 @@ class AddBill extends React.Component{
         }, () => M.FormSelect.init(this.formSelect));
     }
     handleSelect(event){
-
         this.setState({
             type: event.target.value
         })
@@ -89,6 +88,7 @@ class AddBill extends React.Component{
     }
     componentDidMount(){
         M.FormSelect.init(this.formSelect);
+        M.updateTextFields();
     }
     render(){
         const {col = 's12'} = this.props;
@@ -134,7 +134,7 @@ class AddBill extends React.Component{
                     <button className="btn teal lighten-1" title="Add record to table"><i className="fas fa-file-invoice-dollar"></i> Add</button>
                 </form>  
             </div>
-            <Calc modalOpen={modalOpen}  close={this.closeCalc}getAmount={this.getAmontFromCalc}/>
+            <Calc modalOpen={modalOpen}  close={this.closeCalc} getAmount={this.getAmontFromCalc}/>
             </Fragment>
         )
     }

@@ -5,6 +5,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import BillsTable from './bills_table';
 import AddBill from './add_bill';
+import UpdateBill from './update';
 
 class App extends Component{
     constructor(props){
@@ -12,11 +13,15 @@ class App extends Component{
 
         this.state ={
             billsList: [],
-            error: ''
+            error: '',
+            modal: false,
+            updateData: {}
         }
         this.addBill = this.addBill.bind(this);
         this.deleteBill = this.deleteBill.bind(this);
         this.checkbox = this.checkbox.bind(this);
+        this.updateBill = this.updateBill.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
     }
     async addBill(data){
         try{
@@ -57,48 +62,44 @@ class App extends Component{
             paid: event.target.checked? 1:0
         }
         try{
-            await axios.post(`/api/bills/update`, data);
+            await axios.post(`/api/bills/checkbox`, data);
             this.getBillsData();
         } catch(error){
             this.errorHandle();
         }
+    }
+    async updateBill(data){
+        console.log(data);
     }
     errorHandle(){
         this.setState({
             error: "Error: Unable to retrieving bill data"
         });
     }
+    toggleModal(data){
+
+        this.setState({
+            modal: !this.state.modal,
+            updateData: data || null
+        })
+    }
     render(){
+        const {error, billsList, modal, updateData} = this.state;
         return(
             <div>
                 <div className="header-box">
                     <h2 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h2>
                     <h4 className='center page-header  blue-grey-text text-darken-4'>Bill Record Table <i className="fas fa-comment-dollar"></i></h4>
                 </div>
-                <h5 className='red-text text-darken-2 center'>{this.state.error}</h5>
+                <h5 className='red-text text-darken-2 center'>{error}</h5>
                 <div className="row">
-                    <BillsTable list={this.state.billsList} deleteBill={this.deleteBill} checkbox={this.checkbox} col="col s12 m9"/>  
+                    <BillsTable list={billsList} toggleModal={this.toggleModal} checkbox={this.checkbox} col="col s12 m9"/>  
                     <AddBill col="col s12 m3" callBack={this.addBill}/>
                 </div>
-
+                {modal? <UpdateBill display={modal} updateData={updateData} toggleModal={this.toggleModal} deleteBill={this.deleteBill} updateBill={this.updateBill}/>:null}
             </div>
         )
     }
 }   
 
 export default App;
-
-
-//Call server
-// axios.get('http://localhost:3001/api/grades').then((resp)=>{
-//     
-//     if(resp.data.success){
-//         this.setState({
-//             billsList: resp.data.data
-//         });
-//     }
-// }).catch((err)=>{ //catch server error
-//     this.setState({
-//         error: "Error: Unable to retrieving student data"
-//     });
-// });
