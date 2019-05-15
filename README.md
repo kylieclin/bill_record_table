@@ -13,7 +13,7 @@
 >   - Update payment
 >   - Delete payment
 
-### Accomplishments
+### Tools and Technologies
 
 > - Created a full scale application with front-end and back-end integration
 > - Technologies used:
