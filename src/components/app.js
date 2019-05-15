@@ -1,6 +1,6 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize.min';
-import '../assets/css/app.scss'; //no matter where import style sheet it apply to the entire project
+import '../assets/css/app.scss';
 import React, {Component} from 'react';
 import axios from 'axios';
 import BillsTable from './bills_table';

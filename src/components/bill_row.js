@@ -16,7 +16,7 @@ const billRows = props =>{
                 <td className="center">{status}</td>
                 <td>
                     <button onClick={()=>{deleteBill(id)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
-                        <i className="fas fa-trash-alt"></i>
+                        <i className="fas fa-edit"></i>
                     </button>
                 </td>
             </tr>

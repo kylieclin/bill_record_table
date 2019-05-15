@@ -2,11 +2,24 @@ import React, {Component} from 'react';
 import BillRow from './bill_row';
 
 class BillsTable extends Component {
+    constructor(props){
+        super(props)
 
+        this.state = {
+            modal: false
+        }
+
+        this.toggleModel = this.toggleModel.bind(this);
+    }
+    toggleModel(){
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
     render(){
         const { col = 's12', list, deleteBill, checkbox } = this.props;
         const bills = list.map((bill)=>{ // on next line {...student} = props
-            return <BillRow {...bill} key={bill.id} deleteBill={deleteBill} checkbox={checkbox}/>
+            return <BillRow {...bill} key={bill.id} deleteBill={deleteBill} checkbox={checkbox} toggleModel={this.toggleModel}/>
         })
 
         return (
@@ -21,7 +34,7 @@ class BillsTable extends Component {
                             <th>Amount</th>                            
                             <th>Note</th>
                             <th>Complete</th>
-                            <th>Delete</th>
+                            <th>Delete & Update</th>
                         </tr>
                     </thead>
                     <tbody>
