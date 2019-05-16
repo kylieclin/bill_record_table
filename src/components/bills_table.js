@@ -15,14 +15,14 @@ class BillsTable extends Component {
                 <table>
                     <thead>
                         <tr className="teal lighten-4 blue-grey-text text-darken-3">
-                            <th>Date</th>
-                            <th>Pay From</th>
-                            <th>Pay To</th>
-                            <th>Type</th>
-                            <th>Amount</th>                            
-                            <th>Note</th>
-                            <th>Complete</th>
-                            <th>Delete & Update</th>
+                            <th>DATE</th>
+                            <th>PAY FROM</th>
+                            <th>PAY TO</th>
+                            <th>TYPE</th>
+                            <th>AMOUNT</th>                            
+                            <th>NOTE</th>
+                            <th>COMPLETE</th>
+                            <th>UPDATE</th>
                         </tr>
                     </thead>
                     <tbody>

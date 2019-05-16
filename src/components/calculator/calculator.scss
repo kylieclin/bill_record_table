@@ -1,0 +1,55 @@
+.calcbody {
+    padding: 10px;
+    border-radius: 2px;
+    background-color: #263238;;
+    
+
+    .display {
+        border: 1px solid black;
+        border-style: groove;
+        border-radius: 2px;
+        height: 70px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        background-color: #88c7c1;
+
+        .displayText {
+            color: #263238;
+            font-weight: 700;
+            word-wrap: break-word;
+            text-align: right;
+            margin: 2px 0 0 0;
+        }
+    }
+    .buttonsContainer {
+        margin-bottom: 10px;
+        padding: 0;
+
+        .leftContainer {
+            padding: 0;
+        }
+
+        .clearbtnContainer, .numberbtnContainer {
+            padding: 0 6px 0 0;
+            .numberbtnBox {
+                margin-bottom: 0;
+            }
+        }
+        .ops {
+            padding: 0;
+        }
+        .btn {
+            margin: 5px 0;
+           width: 100%;
+           border-radius: 2px;
+           color: white;
+           font-weight: 500;
+           background-color: #1b7c72;
+           transition: all 0.3s;
+        }
+        
+        .btnplus {
+            height: 82px;
+        }
+    }
+}

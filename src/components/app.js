@@ -52,6 +52,7 @@ class App extends Component{
         try{
             await axios.delete(`/api/bills/${id}`);
             this.getBillsData();
+            this.toggleModal();
         }catch (err){
             this.errorHandle();
         }
@@ -69,7 +70,13 @@ class App extends Component{
         }
     }
     async updateBill(data){
-        console.log(data);
+        try{
+            await axios.post('/api/bills/update', data);
+            this.getBillsData();
+            this.toggleModal();
+        } catch (err){
+            this.errorHandle();
+        }
     }
     errorHandle(){
         this.setState({
@@ -77,7 +84,6 @@ class App extends Component{
         });
     }
     toggleModal(data){
-
         this.setState({
             modal: !this.state.modal,
             updateData: data || null
@@ -93,8 +99,8 @@ class App extends Component{
                 </div>
                 <h5 className='red-text text-darken-2 center'>{error}</h5>
                 <div className="row">
-                    <BillsTable list={billsList} toggleModal={this.toggleModal} checkbox={this.checkbox} col="col s12 m9"/>  
-                    <AddBill col="col s12 m3" callBack={this.addBill}/>
+                    <BillsTable list={billsList} toggleModal={this.toggleModal} checkbox={this.checkbox} col="col s12 l9"/>  
+                    <AddBill col="col s12 l3 " callBack={this.addBill}/>
                 </div>
                 {modal? <UpdateBill display={modal} updateData={updateData} toggleModal={this.toggleModal} deleteBill={this.deleteBill} updateBill={this.updateBill}/>:null}
             </div>

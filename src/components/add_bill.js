@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import Calc from './calculator';
+import Modal from './modal';
+import Calculator from './calculator';
 
 class AddBill extends React.Component{
     constructor(props){
@@ -12,13 +13,12 @@ class AddBill extends React.Component{
             note:'',
             error: '',
             message: '',
-            modalOpen: false
+            modal: false
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
-        this.openCalc = this.openCalc.bind(this);
-        this.closeCalc = this.closeCalc.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.getAmontFromCalc = this.getAmontFromCalc.bind(this);
     }
     handleInput(event){
@@ -68,14 +68,9 @@ class AddBill extends React.Component{
             type: event.target.value
         })
     }
-    openCalc(){
+    toggleModal(){
         this.setState({
-            modalOpen: true
-        })
-    }
-    closeCalc(){
-        this.setState({
-            modalOpen: false
+            modal: !this.state.modal
         })
     }
     getAmontFromCalc(number){
@@ -83,23 +78,23 @@ class AddBill extends React.Component{
             this.setState({
             modalOpen: false,
             amount: number
-            }) 
+            }, ()=> M.updateTextFields());
         } 
     }
     componentDidMount(){
         M.FormSelect.init(this.formSelect);
-        M.updateTextFields();
+        M.updateTextFields()
     }
     render(){
         const {col = 's12'} = this.props;
-        const {payfrom, payto , amount, error, type, note, message, modalOpen} = this.state;
+        const {payfrom, payto , amount, error, type, note, message, modal} = this.state;
 
         return(
             <Fragment>
             <div className={`add-bills ${col}`}>
                 <form onSubmit={this.handleSubmit} action="">
                     <div className="center addbill-header">
-                        <h5 className="teal lighten-4 add-header blue-grey-text text-darken-3" title="Add Bills">Add Bill</h5>
+                        <h6 className="teal lighten-4 add-header blue-grey-text text-darken-3" title="Add Bills">ADD BILL</h6>
                     </div>
                     <div className="input-field">
                         <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
@@ -110,11 +105,10 @@ class AddBill extends React.Component{
                         <label htmlFor="payto">Pay To</label>   
                     </div>
                     <div className="input-field">
-                        <label htmlFor="amount">Amount</label> 
+                        <label className="active" htmlFor="amount">Amount</label> 
                         <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
                     </div>
                     <div className="input-field">
-                    
                         <select value={type} name="type" onChange={this.handleSelect} ref={(element)=>{this.formSelect = element}} required>
                             <option value="default" disabled>Select Type</option>
                             <option value="Credit Card">Credit Card</option>
@@ -130,11 +124,13 @@ class AddBill extends React.Component{
                     </div>
                     <h6 className="teal-text">{message}</h6>
                     <h6 className="red-text">{error}</h6>
-                    <div className="btn teal lighten-2" onClick={this.openCalc} title="Open calculator"><i className="fas fa-calculator"></i></div>
-                    <button className="btn teal lighten-1" title="Add record to table"><i className="fas fa-file-invoice-dollar"></i> Add</button>
+                    <div className="btn teal lighten-2" onClick={this.toggleModal} title="Open calculator"><i className="fas fa-calculator"></i></div>
+                    <button className="btn teal lighten-1" title="Add record to table">Add <i className="fas fa-check"></i></button>
                 </form>  
             </div>
-            <Calc modalOpen={modalOpen}  close={this.closeCalc} getAmount={this.getAmontFromCalc}/>
+            <Modal modal={modal}  close={this.toggleModal}>
+                <Calculator ref="cal" getAmount={this.getAmontFromCalc}/>
+            </Modal>
             </Fragment>
         )
     }

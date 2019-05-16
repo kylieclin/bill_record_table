@@ -15,8 +15,8 @@ const billRows = props =>{
                 <td>{note}</td>                
                 <td className="center">{status}</td>
                 <td>
-                    <button onClick={()=>{toggleModal(props)}} className="waves-effect waves-light btn-small btn-floating blue-grey lighten-1">
-                        <i className="fas fa-edit"></i>
+                    <button onClick={()=>{toggleModal(props)}} className="waves-effect waves-light btn-small teal lighten-4">
+                        <i className="fas fa-pencil-alt"></i>
                     </button>
                 </td>
             </tr>

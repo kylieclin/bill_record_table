@@ -87,7 +87,7 @@ server.post('/api/bills/checkbox', (req,res)=>{
 
 server.post('/api/bills/update', (req,res)=>{
     database.connect(()=>{
-        const {payfrom, payto, type, amount, note } = req.body;
+        const {payfrom, payto, type, amount, note, id } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
                 success: false,
@@ -96,9 +96,9 @@ server.post('/api/bills/update', (req,res)=>{
             return;
         }
 
-        const query ='UPDATE `bills` SET SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `added`=NOW(), `paid`=0, `note`=?';
+        const query ='UPDATE `bills` SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `note`=? WHERE `bills`.`id` =?';
 
-        database.query(query,[payfrom, payto, type, amount*100, note],(error)=>{
+        database.query(query,[payfrom, payto, type, amount*100, note, id],(error)=>{
             if(!error){
                 res.send({
                     success: true
