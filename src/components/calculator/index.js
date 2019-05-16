@@ -111,7 +111,6 @@ class Calculator extends Component{
     }
 
     handleExport(){
-        this.handleEqual();
         this.props.getAmount(this.state.answer);
     }
 
@@ -228,7 +227,7 @@ class Calculator extends Component{
     }
 
     render(){
-        const {calcItems} = this.state;
+        const {calcItems, equalClick} = this.state;
         const numbers =[7,8,9,4,5,6,1,2,3,0];
         const numberbtn = numbers.map(num=>{
             return(
@@ -237,6 +236,7 @@ class Calculator extends Component{
                 </div> 
             )
         })
+
         return(
             <Fragment>
             <div className="calcbody col s12 m8">
@@ -275,9 +275,10 @@ class Calculator extends Component{
                 </div>
             </div>
             <div className="export right">
+                {equalClick? 
                 <button className="btn export-answer" onClick={this.handleExport } title="Export answer to amount">
                 <i className="fas fa-file-import"></i> Export
-                </button>
+                </button>: null}
             </div>
             </Fragment>  
         )
