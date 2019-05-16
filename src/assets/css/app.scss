@@ -1,75 +1,87 @@
-body{
+body {
     color: #263238;
     background-color: whitesmoke;
 }
 
 
-[type="checkbox"]:checked, td>#checkbox{ 
+[type="checkbox"]:checked, td>#checkbox { 
     opacity: 1; 
     pointer-events: auto;
     position: relative;
 }
 
-.page-header{
+.page-header {
     margin: 0.5em;
     border-bottom: 1px solid #80cbc4;
 }
 
-.header-box{
+.header-box { 
     h4{
         display:none
     }
 }
 
-.add-bills{
+.add-bills {
 
 
-    .add-header{
-        padding: 0.6rem 0 .656rem 0;
-        margin: 0 auto;
-        font-size: 1.3em;
+    .add-header {
+        padding: 13px 0 13px 0;
         font-weight: bold;
+        margin: 0 auto;
         line-height: 25px;
     }
 
-    .btn{
+    .btn {
         margin: 10px 5px;
     }
 }
 
-.bill-table{
+.bill-table {
     margin-bottom: 20px;
 
-    th, tr, td{
+    th, tr, td {
         border-radius: 0;
+        text-transform: capitalize;
     }
     
     tr{
-        &:hover{
+        &:hover {
             background-color: #cfd8dc;
         }
     }
-    
 
+    th:nth-child(n+7), td:last-child {
+        text-align: center;
+    }
 }
 
-@media (max-width: 720px){
-    .header-box{
-        h2{
+.update-form {
+    background-color: whitesmoke;
+    border: 1px solid #263238;
+    padding: 10px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+
+    .updatebill-header {
+        h5 {
+            margin: 0;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .header-box {
+        h2 {
             display:none
         }
 
-        h4{
+        h4 {
             display: block;
         }
     }
 
-    .bill-table{
-
-        th:nth-child(n+6), td:nth-child(n+6){
-            display: none;
-        }
-
-        
+    .bill-table {
+        overflow-x: scroll;
     }
 }

@@ -33,7 +33,7 @@ server.post('/api/bills',(req, res)=>{
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
                 success: false,
-                message: 'must add items into todolist'
+                message: 'Input fields can not be blank.'
             })
             return;
         }
@@ -57,7 +57,7 @@ server.post('/api/bills',(req, res)=>{
     })
 })
 
-server.post('/api/bills/update', (req,res)=>{
+server.post('/api/bills/checkbox', (req,res)=>{
     database.connect(()=>{
         if(req.body.id === undefined){
             res.send({
@@ -70,6 +70,35 @@ server.post('/api/bills/update', (req,res)=>{
         const query ='UPDATE `bills` SET `paid` =? WHERE `bills`.`id` =?';
 
         database.query(query,[paid, id],(error)=>{
+            if(!error){
+                res.send({
+                    success: true
+                })
+            } else {
+                res.send({
+                    success: false,
+                    error
+                })
+            }
+        })
+
+    })
+})
+
+server.post('/api/bills/update', (req,res)=>{
+    database.connect(()=>{
+        const {payfrom, payto, type, amount, note, id } = req.body;
+        if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
+            res.send({
+                success: false,
+                message: 'Input fields can not be blank.'
+            })
+            return;
+        }
+
+        const query ='UPDATE `bills` SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `note`=? WHERE `bills`.`id` =?';
+
+        database.query(query,[payfrom, payto, type, amount*100, note, id],(error)=>{
             if(!error){
                 res.send({
                     success: true
