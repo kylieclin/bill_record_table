@@ -71,22 +71,22 @@ class UpdateBill extends Component{
 
         return(
             <Modal modal={true}  close={toggleModal}>
-                <div className="update-form">
+                <div className="update-form card">
                     <form onSubmit={this.handleSubmit} action="">
                         <div className="center updatebill-header">
-                            <h5 className="add-header blue-grey-text text-darken-3">UPDATE</h5>
+                            <h5 className="add-header blue-grey-text text-darken-3">Update <i className="fas fa-pen-alt"></i></h5>
                         </div>
                         <div className="input-field">
-                            <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
-                            <label className="active" htmlFor="payfrom">Pay From</label>   
+                            <input name="up-payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
+                            <label className="active" htmlFor="up-payfrom">Pay From</label>   
                         </div>
                         <div className="input-field">
-                            <input name="payto" autoComplete="off" id="payto" type="text" value={payto} onChange={this.handleInput} maxLength="20" required/>
-                            <label className="active" htmlFor="payto">Pay To</label>   
+                            <input name="up-payto" autoComplete="off" id="payto" type="text" value={payto} onChange={this.handleInput} maxLength="20" required/>
+                            <label className="active" htmlFor="up-payto">Pay To</label>   
                         </div>
                         <div className="input-field"> 
-                            <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
-                            <label className="active" htmlFor="amount">Amount</label>
+                            <input name="up-amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
+                            <label className="active" htmlFor="up-amount">Amount</label>
                         </div>
                         <div className="input-field">
                             <label className="active" htmlFor="">Select Payment Type</label>
@@ -98,8 +98,8 @@ class UpdateBill extends Component{
                             </select>
                         </div>
                         <div className="input-field">
-                            <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
-                            <label className="active" htmlFor="note">Note</label>   
+                            <input name="up-note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
+                            <label className="active" htmlFor="up-note">Note</label>   
                         </div>
                         <h6 className="red-text">{error}</h6>
                         <div className="btn red lighten-2" onClick={()=>deleteBill(id)} title="Delete"><i className="fas fa-trash-alt"></i></div>
