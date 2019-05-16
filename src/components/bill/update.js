@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Modal from './modal';
+import Modal from '../modal';
 
 class UpdateBill extends Component{
     constructor(props){
@@ -14,21 +14,27 @@ class UpdateBill extends Component{
             id: null,
             error: ''
         }
+
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSelect = this.handleSelect.bind(this);
     }
+
     handleInput(event){
         const { name, value} =event.target;
+        
         this.setState({
              [name]:value,
         })
     }
+
     handleSelect(event){
+
         this.setState({
             type: event.target.value
         })
     }
+
     handleSubmit(event){
         event.preventDefault();
         const {payfrom, payto, amount, type} =this.state;
@@ -44,8 +50,10 @@ class UpdateBill extends Component{
         }
         
     }
+
     componentDidMount(){
         const {payfrom, payto, amount, type, note, id}= this.props.updateData;
+
         this.setState({
             payfrom,
             payto,
@@ -56,6 +64,7 @@ class UpdateBill extends Component{
         })
         M.FormSelect.init(this.formSelect);
     }
+
     render(){
         const {toggleModal, deleteBill} = this.props;
         const {payfrom, payto, amount, type, note, error, id } = this.state;
@@ -65,7 +74,7 @@ class UpdateBill extends Component{
                 <div className="update-form">
                     <form onSubmit={this.handleSubmit} action="">
                         <div className="center updatebill-header">
-                            <h5 className="teal lighten-4 add-header blue-grey-text text-darken-3">UPDATE</h5>
+                            <h5 className="add-header blue-grey-text text-darken-3">UPDATE</h5>
                         </div>
                         <div className="input-field">
                             <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
@@ -85,7 +94,7 @@ class UpdateBill extends Component{
                                 <option value="Credit Card">Credit Card</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Check">Check</option>
-                                <option value="Wire">Wire</option>
+                                <option value="Wire">Wire Wire Transfer</option>
                             </select>
                         </div>
                         <div className="input-field">

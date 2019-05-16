@@ -3,13 +3,13 @@ import 'materialize-css/dist/js/materialize.min';
 import '../assets/css/app.scss';
 import React, {Component} from 'react';
 import axios from 'axios';
-import BillsTable from './bills_table';
-import AddBill from './add_bill';
-import UpdateBill from './update';
+import BillsTable from './bill/bills_table';
+import AddBill from './bill/add_bill';
+import UpdateBill from './bill/update';
 
 class App extends Component{
     constructor(props){
-        super(props)
+        super(props);
 
         this.state ={
             billsList: [],
@@ -17,12 +17,18 @@ class App extends Component{
             modal: false,
             updateData: {}
         }
+
         this.addBill = this.addBill.bind(this);
         this.deleteBill = this.deleteBill.bind(this);
         this.checkbox = this.checkbox.bind(this);
         this.updateBill = this.updateBill.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
+
+    componentDidMount(){
+        this.getBillsData();
+    }
+
     async addBill(data){
         try{
             await axios.post('/api/bills', data);
@@ -32,22 +38,22 @@ class App extends Component{
         }
         
     }
-    componentDidMount(){
-        this.getBillsData();
-    }
+
     async getBillsData(){
         try{
             const resp = await axios.get('/api/bills');
-            console.log(resp)
+
             if(resp.data.success){
                 this.setState({
                     billsList: resp.data.data
                 });
             } 
+
         } catch (err){
             this.errorHandle();
         }
     }
+
     async deleteBill(id){
         try{
             await axios.delete(`/api/bills/${id}`);
@@ -57,11 +63,13 @@ class App extends Component{
             this.errorHandle();
         }
     }
+
     async checkbox(id, event){
         const data ={
             id: id,
             paid: event.target.checked? 1:0
         }
+
         try{
             await axios.post(`/api/bills/checkbox`, data);
             this.getBillsData();
@@ -69,6 +77,7 @@ class App extends Component{
             this.errorHandle();
         }
     }
+
     async updateBill(data){
         try{
             await axios.post('/api/bills/update', data);
@@ -78,19 +87,23 @@ class App extends Component{
             this.errorHandle();
         }
     }
+
     errorHandle(){
         this.setState({
-            error: "Error: Unable to retrieving bill data"
+            message: "Error: Unable to retrieving bill data"
         });
     }
+
     toggleModal(data){
         this.setState({
             modal: !this.state.modal,
             updateData: data || null
         })
     }
+
     render(){
         const {error, billsList, modal, updateData} = this.state;
+        
         return(
             <div>
                 <div className="header-box">

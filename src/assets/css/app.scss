@@ -59,6 +59,9 @@ body {
     background-color: whitesmoke;
     border: 1px solid #263238;
     padding: 10px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.3);
 
     .updatebill-header {
         h5 {

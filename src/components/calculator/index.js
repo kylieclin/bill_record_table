@@ -23,9 +23,11 @@ class Calculator extends Component{
         this.clearDigits = this.clearDigits.bind(this);
         this.percent = this.percent.bind(this);
     }
+
     handleNumber(event){
         const number = event.target.value;
         const {calcItems, equalClick } = this.state;
+
         if(equalClick >= 1){
             this.resetAll();
             this.pushCalcItems(number);
@@ -36,7 +38,6 @@ class Calculator extends Component{
             this.setState({
                 calcItems: newarr
             })
-
         } else {
             this.pushCalcItems(number);
         }
@@ -46,13 +47,16 @@ class Calculator extends Component{
             opClick: false
         })
     }
+
     pushCalcItems(item){
         this.setState({
             calcItems: [...this.state.calcItems, item]
         })
     }
+
     handleDecimal(){
         const {numberClicked, decimalClicked, opClick, calcItems} = this.state;
+
         if(numberClicked && !decimalClicked){
             const decimal = calcItems[calcItems.length-1] + ".";
             let newarr = [...calcItems];
@@ -63,13 +67,16 @@ class Calculator extends Component{
         } else if (opClick || !calcItems.length ||(!numberClicked && calcItems[calcItems.length-1][[calcItems.length-1].length-1] !='.')){
             this.pushCalcItems('0.');
         }
+
         this.setState({
             decimalClicked: true
         })
     }
+
     handleOps(event){
         const {calcItems} = this.state;
         const lastindex = calcItems[calcItems.length-1];
+
         if(!isNaN(lastindex)){
             this.pushCalcItems(event.target.id);
         } else if (isNaN(lastindex) && calcItems.length !=0){
@@ -87,24 +94,32 @@ class Calculator extends Component{
             equalClick:0
         })
     }
+
     handleEqual(){
+
         this.setState({
             equalClick: this.state.equalClick+1
         })
+
         let {calcItems} = this.state;
+
         if(!calcItems){
             this.pushCalcItems('0');
         } else if(calcItems.length){    
             this.mathFilter(calcItems);
         }
     }
+
+    handleExport(){
+        this.handleEqual();
+        this.props.getAmount(this.state.answer);
+    }
+
     mathFilter(arr){
-        const {equalClick} = this.state;
         let arrformath = this.opSequenceAndParse(arr);
         let num1 = arrformath[0];
-        let op;
-        let num2;
-        let answer;
+        let op, num2, answer;
+
         if(arrformath.length >= 3){
             for(let index=1; index < arrformath.length-1; index+=2){
                 op = arrformath[index];
@@ -120,7 +135,7 @@ class Calculator extends Component{
             answer = arrformath[0];
         }
 
-        if(!isNaN(answer) && answer % 1 !== 0){ //fix decimal
+        if(!isNaN(answer) && answer % 1 !== 0){
             answer = parseFloat(answer.toPrecision(8));
         }
 
@@ -129,8 +144,10 @@ class Calculator extends Component{
             answer: answer
         })
     }
+
     opSequenceAndParse(arr){
         let answer;
+
         for(let index = 0; index < arr.length; index++){
             if(index % 2 == 0){
               arr[index] = parseFloat(arr[index]);  
@@ -144,8 +161,10 @@ class Calculator extends Component{
         }
         return arr;
     }
+
     doMath(num1, num2, op){
         let answer;
+        
         if( op ==='+'){
             answer = num1 + num2;
         } else if ( op === '-'){
@@ -161,7 +180,9 @@ class Calculator extends Component{
         }
         return answer;
     }
+
     resetAll(){
+
         this.setState({
             calcItems: [],
             equalClick: 0,
@@ -171,9 +192,11 @@ class Calculator extends Component{
             answer: null
         })
     }
+
     clearDigits(){
         const {calcItems, equalClick} = this.state;
         const lastIndex= calcItems[calcItems.length-1]+'';
+
         if(!isNaN(lastIndex) && lastIndex.length > 1){
             const sliceLast = lastIndex.slice(0,-1);
             let newarr = [...calcItems];
@@ -193,18 +216,17 @@ class Calculator extends Component{
             })
         }
     }
+
     percent(){
         const {calcItems} = this.state;
-        const answer = calcItems[calcItems.length-1]/100
+        const answer = calcItems[calcItems.length-1]/100;
+
         this.setState({
             calcItems: [answer],
             answer: answer
         })
     }
-    handleExport(){
-        this.handleEqual();
-        this.props.getAmount(this.state.answer);
-    }
+
     render(){
         const {calcItems} = this.state;
         const numbers =[7,8,9,4,5,6,1,2,3,0];
