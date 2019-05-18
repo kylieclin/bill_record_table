@@ -104,6 +104,7 @@ class UpdateBill extends Component{
                         <h6 className="red-text">{error}</h6>
                         <div className="btn red lighten-2" onClick={()=>deleteBill(id)} title="Delete"><i className="fas fa-trash-alt"></i></div>
                         <button className="btn teal lighten-1 right" title="Update" onClick={this.handleSubmit}>Update <i className="fas fa-check"></i></button>
+                        <div className="btn teal lighten-2 right cancel-btn" onClick={toggleModal} title="cancel">Cancel</div>
                     </form>
                 </div>  
             </Modal>
