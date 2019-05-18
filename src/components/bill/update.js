@@ -77,15 +77,15 @@ class UpdateBill extends Component{
                             <h5 className="add-header blue-grey-text text-darken-3">Update <i className="fas fa-pen-alt"></i></h5>
                         </div>
                         <div className="input-field">
-                            <input name="up-payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
+                            <input name="payfrom" autoComplete="off" id="payfrom" type="text" value={payfrom} onChange={this.handleInput} maxLength="20" required/>
                             <label className="active" htmlFor="up-payfrom">Pay From</label>   
                         </div>
                         <div className="input-field">
-                            <input name="up-payto" autoComplete="off" id="payto" type="text" value={payto} onChange={this.handleInput} maxLength="20" required/>
+                            <input name="payto" autoComplete="off" id="payto" type="text" value={payto} onChange={this.handleInput} maxLength="20" required/>
                             <label className="active" htmlFor="up-payto">Pay To</label>   
                         </div>
                         <div className="input-field"> 
-                            <input name="up-amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
+                            <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
                             <label className="active" htmlFor="up-amount">Amount</label>
                         </div>
                         <div className="input-field">
@@ -98,7 +98,7 @@ class UpdateBill extends Component{
                             </select>
                         </div>
                         <div className="input-field">
-                            <input name="up-note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
+                            <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
                             <label className="active" htmlFor="up-note">Note</label>   
                         </div>
                         <h6 className="red-text">{error}</h6>

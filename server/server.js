@@ -2,14 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const mysqlCreds = require('./mysqlcreds.js');
-const database = mysql.createConnection(mysqlCreds);
+const database = mysql.createPool(mysqlCreds);
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
 server.get('/api/bills', (req,res)=>{
-    database.connect(()=>{
+    // database.connect(()=>{
         const query = "SELECT * FROM `bills`";
         database.query(query, (error, data)=>{
             const output ={
@@ -24,11 +24,11 @@ server.get('/api/bills', (req,res)=>{
             }
             res.send(output);
         })
-    })
+    // })
 })
 
 server.post('/api/bills',(req, res)=>{
-    database.connect(()=>{
+    // database.connect(()=>{
         const {payfrom, payto, type, amount, note } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
@@ -54,11 +54,11 @@ server.post('/api/bills',(req, res)=>{
                 })
             }
         })
-    })
+    // })
 })
 
 server.post('/api/bills/checkbox', (req,res)=>{
-    database.connect(()=>{
+    // database.connect(()=>{
         if(req.body.id === undefined){
             res.send({
                 success: false,
@@ -82,11 +82,11 @@ server.post('/api/bills/checkbox', (req,res)=>{
             }
         })
 
-    })
+    // })
 })
 
 server.post('/api/bills/update', (req,res)=>{
-    database.connect(()=>{
+    // database.connect(()=>{
         const {payfrom, payto, type, amount, note, id } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
@@ -111,11 +111,11 @@ server.post('/api/bills/update', (req,res)=>{
             }
         })
 
-    })
+    // })
 })
 
 server.delete('/api/bills/:id',(req,res)=>{
-    database.connect(()=>{
+    // database.connect(()=>{
 
         if(req.params.id === undefined){
             res.send({
@@ -138,7 +138,7 @@ server.delete('/api/bills/:id',(req,res)=>{
                 })
             }
         })
-    })
+    // })
 })
 
 server.listen(3001, ()=>{
