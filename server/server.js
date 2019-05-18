@@ -25,7 +25,7 @@ database.getConnection((err, connection) => {
 })
 
 server.get('/api/bills', (req,res)=>{
-    // database.connect(()=>{
+
         const query = "SELECT * FROM `bills`";
         database.query(query, (error, data)=>{
             const output ={
@@ -40,11 +40,11 @@ server.get('/api/bills', (req,res)=>{
             }
             res.send(output);
         })
-    // })
+
 })
 
-server.post('/api/bills',(req, res)=>{
-    // database.connect(()=>{
+server.post('/api/bills/add',(req, res)=>{
+
         const {payfrom, payto, type, amount, note } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
@@ -70,11 +70,10 @@ server.post('/api/bills',(req, res)=>{
                 })
             }
         })
-    // })
 })
 
 server.post('/api/bills/checkbox', (req,res)=>{
-    // database.connect(()=>{
+
         if(req.body.id === undefined){
             res.send({
                 success: false,
@@ -97,12 +96,10 @@ server.post('/api/bills/checkbox', (req,res)=>{
                 })
             }
         })
-
-    // })
 })
 
 server.post('/api/bills/update', (req,res)=>{
-    // database.connect(()=>{
+
         const {payfrom, payto, type, amount, note, id } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
@@ -127,11 +124,9 @@ server.post('/api/bills/update', (req,res)=>{
             }
         })
 
-    // })
 })
 
 server.delete('/api/bills/:id',(req,res)=>{
-    // database.connect(()=>{
 
         if(req.params.id === undefined){
             res.send({
@@ -154,7 +149,6 @@ server.delete('/api/bills/:id',(req,res)=>{
                 })
             }
         })
-    // })
 })
 
 server.listen(3001, ()=>{

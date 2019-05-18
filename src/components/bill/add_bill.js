@@ -77,7 +77,7 @@ class AddBill extends React.Component{
         })
     }
 
-    toggleModal(){
+    toggleModal(event){
 
         this.setState({
             modal: !this.state.modal

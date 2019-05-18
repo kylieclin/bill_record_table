@@ -31,7 +31,7 @@ class App extends Component{
 
     async addBill(data){
         try{
-            await axios.post('/api/bills', data);
+            await axios.post('/api/bills/add', data);
             this.getBillsData();
         } catch (err){
             this.errorHandle();
