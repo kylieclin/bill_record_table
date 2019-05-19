@@ -239,7 +239,7 @@ class Calculator extends Component{
 
         return(
             <Fragment>
-            <div className="calcbody col s12 m8">
+            <div className="card calcbody col s12 m8 offset-m2">
                 <div className="displayArea">
                     <div className="display col s12">
                         <p className="displayText">{calcItems.join("")}</p>
@@ -274,10 +274,10 @@ class Calculator extends Component{
                     </div>
                 </div>
             </div>
-            <div className="export right">
+            <div className="export center">
                 {equalClick? 
                 <button className="btn export-answer" onClick={this.handleExport } title="Export answer to amount">
-                <i className="fas fa-file-import"></i> Export
+                <i className="fas fa-file-import"></i> Input amount
                 </button>: null}
             </div>
             </Fragment>  

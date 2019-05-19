@@ -37,17 +37,24 @@
             padding: 0;
         }
         .btn {
-            margin: 5px 0;
+           margin: 5px 0;
            width: 100%;
            border-radius: 2px;
            color: white;
            font-weight: 500;
            background-color: #1b7c72;
            transition: all 0.3s;
+           padding: 0;
         }
         
         .btnplus {
             height: 82px;
         }
+    }
+}
+
+.export {
+    .export-answer {
+        margin: 10px 0;
     }
 }
