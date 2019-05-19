@@ -121,7 +121,8 @@ class AddBill extends React.Component{
                         </div>
                         <div className="input-field">
                             <label className="active" htmlFor="amount">Amount</label> 
-                            <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>   
+                            <input name="amount" autoComplete="off" id="amount" type="text" value={amount} onChange={this.handleInput} maxLength="20" required/>        
+                            <i className="fas fa-calculator prefix" onClick={this.toggleModal} title="Open calculator"></i>
                         </div>
                         <div className="input-field">
                             <select value={type} name="type" onChange={this.handleSelect} ref={(element)=>{this.formSelect = element}} required>
@@ -137,7 +138,7 @@ class AddBill extends React.Component{
                             <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
                             <label htmlFor="note">Note</label>   
                         </div>
-                        <div className="btn teal lighten-2" onClick={this.toggleModal} title="Open calculator"><i className="fas fa-calculator"></i></div>
+                        
                         <button className="btn teal lighten-1" title="Add record to table">Add <i className="fas fa-check"></i></button>
                         <div className="message"><h6 className="teal-text">{message}</h6></div>
                         <h6 className="red-text">{error}</h6>

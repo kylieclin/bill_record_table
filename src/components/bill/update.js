@@ -71,7 +71,7 @@ class UpdateBill extends Component{
 
         return(
             <Modal modal={true}  close={toggleModal}>
-                <div className="update-form card">
+                <div className="update-form card s12 m8">
                     <form onSubmit={this.handleSubmit} action="">
                         <div className="center updatebill-header">
                             <h5 className="add-header blue-grey-text text-darken-3">Update <i className="fas fa-pen-alt"></i></h5>
@@ -104,7 +104,6 @@ class UpdateBill extends Component{
                         <h6 className="red-text">{error}</h6>
                         <div className="btn red lighten-2" onClick={()=>deleteBill(id)} title="Delete"><i className="fas fa-trash-alt"></i></div>
                         <button className="btn teal lighten-1 right" title="Update" onClick={this.handleSubmit}>Update <i className="fas fa-check"></i></button>
-                        <div className="btn teal lighten-2 right cancel-btn" onClick={toggleModal} title="cancel">Cancel</div>
                     </form>
                 </div>  
             </Modal>

@@ -23,6 +23,20 @@ body {
 
 .add-bills {
 
+    #amount {
+        width: calc(100% - 3rem);
+    }
+
+    .prefix {
+        padding: 0 1rem;
+        color: #009688;
+
+        &:hover {
+            color: #0f776d;
+            cursor: pointer;
+        }
+    }
+
     .add-header {
         padding: 13px 0 13px 0;
         font-weight: bold;
@@ -71,10 +85,6 @@ body {
             padding: 12px;
             font-weight: 500;
         }
-    }
-
-    .cancel-btn {
-        margin-right: 5px;
     }
 }
 
