@@ -232,16 +232,16 @@ class Calculator extends Component{
         const numberbtn = numbers.map(num=>{
             return(
                 <div className="numberbtnContainer col s4" key={num}>
-                    <button className="btn numberbtn" onClick={this.handleNumber} value={num}>{num}</button>                              
+                    <button className="btn numberbtn teal lighten-3" onClick={this.handleNumber} value={num}>{num}</button>                              
                 </div> 
             )
         })
 
         return(
             <Fragment>
-            <div className="card calcbody col s12 m8 offset-m2">
+            <div className="calcbody col s12 m8 offset-m2">
                 <div className="displayArea">
-                    <div className="display col s12">
+                    <div className="display col s12 teal lighten-4">
                         <p className="displayText">{calcItems.join("")}</p>
                     </div>
                 </div>
@@ -249,34 +249,34 @@ class Calculator extends Component{
                     <div className="leftContainer col s8">
                         <div className="numberbtnBox">
                             <div className="clearbtnContainer col s4">
-                                <button className="btn clearbtnC" onClick={this.resetAll}>AC</button> 
+                                <button className="btn clearbtnC red lighten-2" onClick={this.resetAll}>AC</button> 
                              </div>   
                             <div className="clearbtnContainer col s4">
-                                <button className="btn clearbtnCE" onClick={this.clearDigits}>CE</button>
+                                <button className="btn clearbtnCE red lighten-2" onClick={this.clearDigits}>CE</button>
                              </div>   
                             <div className="clearbtnContainer col s4">
-                                <button className="btn percent" onClick={this.percent}>%</button>
+                                <button className="btn percent teal lighten-2" onClick={this.percent}>%</button>
                              </div>   
                             {numberbtn}
                             <div className="numberbtnContainer col s4">
-                                <button className="btn" id="decimal" value="." onClick={this.handleDecimal}>.</button>                                
+                                <button className="btn teal lighten-3" id="decimal" value="." onClick={this.handleDecimal}>.</button>                                
                             </div>
                             <div className="numberbtnContainer col s4">
-                                <button className="btn" id="equalbtn" value="=" onClick={this.handleEqual}>=</button>
+                                <button className="btn teal lighten-3" id="equalbtn" value="=" onClick={this.handleEqual}>=</button>
                             </div>
                         </div>
                     </div>
                     <div className="ops col s4">
-                        <button className="btn opsbtn" id="/" onClick={this.handleOps}>&divide;</button>
-                        <button className="btn opsbtn" id="*" onClick={this.handleOps}>&times;</button>
-                        <button className="btn opsbtn" id="-" onClick={this.handleOps}>-</button>
-                        <button className="btn opsbtn btnplus" id="+" onClick={this.handleOps}>+</button>                       
+                        <button className="btn opsbtn teal lighten-2" id="/" onClick={this.handleOps}>&divide;</button>
+                        <button className="btn opsbtn teal lighten-2" id="*" onClick={this.handleOps}>&times;</button>
+                        <button className="btn opsbtn teal lighten-2" id="-" onClick={this.handleOps}>-</button>
+                        <button className="btn opsbtn btnplus  teal lighten-2" id="+" onClick={this.handleOps}>+</button>                       
                     </div>
                 </div>
             </div>
             <div className="export center">
                 {equalClick? 
-                <button className="btn export-answer" onClick={this.handleExport } title="Export answer to amount">
+                <button className="btn teal export-answer" onClick={this.handleExport } title="Export answer to amount">
                 <i className="fas fa-file-import"></i> Input amount
                 </button>: null}
             </div>

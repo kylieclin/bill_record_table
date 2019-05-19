@@ -138,9 +138,8 @@ class AddBill extends React.Component{
                             <input name="note" autoComplete="off" id="note" type="text" value={note} onChange={this.handleInput} maxLength="30" title="Add some notes"/>
                             <label htmlFor="note">Note</label>   
                         </div>
-                        
-                        <button className="btn teal lighten-1" title="Add record to table">Add <i className="fas fa-check"></i></button>
-                        <div className="message"><h6 className="teal-text">{message}</h6></div>
+                        <button className="btn teal right" title="Add record to table">Add <i className="fas fa-check"></i></button>
+                        <div className="message"><h6 className="teal-text darken-4">{message}</h6></div>
                         <h6 className="red-text">{error}</h6>
                     </form>  
                 </div>
