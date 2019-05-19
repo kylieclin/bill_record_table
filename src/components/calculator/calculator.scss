@@ -1,15 +1,15 @@
 .calcbody {
     padding: 10px;
     border-radius: 2px;
-    background-color: #80cbc4;
+    background-color: whitesmoke;
+    border: 1px solid #b2dfdb;
     
     .display {
-        border: 1px solid #1b7c72;
         border-radius: 2px;
         height: 70px;
         margin-top: 10px;
         margin-bottom: 5px;
-        background-color: #c9e4e1;
+        // background-color: #80cbc4;
 
         .displayText {
             color: #263238;
@@ -39,10 +39,10 @@
         .btn {
            margin: 5px 0;
            width: 100%;
-           border-radius: 2px;
-           color: white;
+        //    border-radius: 2px;
+        //    color: whitesmoke;
            font-weight: 500;
-           background-color: #1b7c72;
+        //    background-color: #80cbc4;
            transition: all 0.3s;
            padding: 0;
         }
