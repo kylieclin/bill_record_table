@@ -2,14 +2,30 @@ const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
 const mysqlCreds = require('./mysqlcreds.js');
-const database = mysql.createConnection(mysqlCreds);
+const database = mysql.createPool(mysqlCreds);
 const server = express();
 
 server.use(cors());
 server.use(express.json());
 
+database.getConnection((err, connection) => {
+    if (err) {
+        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
+            console.error('Database connection was closed.')
+        }
+        if (err.code === 'ER_CON_COUNT_ERROR') {
+            console.error('Database has too many connections.')
+        }
+        if (err.code === 'ECONNREFUSED') {
+            console.error('Database connection was refused.')
+        }
+    }
+    if (connection) connection.release()
+    return
+})
+
 server.get('/api/bills', (req,res)=>{
-    database.connect(()=>{
+
         const query = "SELECT * FROM `bills`";
         database.query(query, (error, data)=>{
             const output ={
@@ -24,22 +40,23 @@ server.get('/api/bills', (req,res)=>{
             }
             res.send(output);
         })
-    })
+
 })
 
-server.post('/api/bills',(req, res)=>{
-    database.connect(()=>{
+server.post('/api/bills/add',(req, res)=>{
+
         const {payfrom, payto, type, amount, note } = req.body;
         if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
             res.send({
                 success: false,
-                message: 'must add items into todolist'
+                message: 'Input fields can not be blank.'
             })
             return;
         }
         
-        const query = 'INSERT INTO `bills` SET `payfrom`="'+payfrom+'", `payto`="'+payto+'", `type`="'+type+'", `amount`='+amount*100+', `added`=NOW(), `paid`=0, `note`="'+note+'"';
-        database.query(query,(error,result)=>{
+        const query = 'INSERT INTO `bills` SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `added`=NOW(), `paid`=0, `note`=?';
+
+        database.query(query, [payfrom, payto, type, amount*100, note],(error,result)=>{
             if(!error){
                 res.send({
                     success: true,
@@ -53,11 +70,10 @@ server.post('/api/bills',(req, res)=>{
                 })
             }
         })
-    })
 })
 
-server.post('/api/bills/update', (req,res)=>{
-    database.connect(()=>{
+server.post('/api/bills/checkbox', (req,res)=>{
+
         if(req.body.id === undefined){
             res.send({
                 success: false,
@@ -66,9 +82,36 @@ server.post('/api/bills/update', (req,res)=>{
             return;
         }
         const {id, paid} = req.body
-        const query ='UPDATE `bills` SET `paid` ='+paid+' WHERE `bills`.`id` ='+id+'';
+        const query ='UPDATE `bills` SET `paid` =? WHERE `bills`.`id` =?';
 
-        database.query(query,(error)=>{
+        database.query(query,[paid, id],(error)=>{
+            if(!error){
+                res.send({
+                    success: true
+                })
+            } else {
+                res.send({
+                    success: false,
+                    error
+                })
+            }
+        })
+})
+
+server.post('/api/bills/update', (req,res)=>{
+
+        const {payfrom, payto, type, amount, note, id } = req.body;
+        if(payfrom === undefined || payto === undefined || type === undefined || amount === undefined || note === undefined){
+            res.send({
+                success: false,
+                message: 'Input fields can not be blank.'
+            })
+            return;
+        }
+
+        const query ='UPDATE `bills` SET `payfrom`= ?, `payto`=?, `type`=?, `amount`=?, `note`=? WHERE `bills`.`id` =?';
+
+        database.query(query,[payfrom, payto, type, amount*100, note, id],(error)=>{
             if(!error){
                 res.send({
                     success: true
@@ -81,11 +124,9 @@ server.post('/api/bills/update', (req,res)=>{
             }
         })
 
-    })
 })
 
 server.delete('/api/bills/:id',(req,res)=>{
-    database.connect(()=>{
 
         if(req.params.id === undefined){
             res.send({
@@ -108,7 +149,6 @@ server.delete('/api/bills/:id',(req,res)=>{
                 })
             }
         })
-    })
 })
 
 server.listen(3001, ()=>{

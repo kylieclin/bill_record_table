@@ -1,66 +1,100 @@
-body{
+body {
     color: #263238;
+    background-color: whitesmoke;
+    padding: 0 15px;
 }
 
 
-[type="checkbox"]:checked, td>#checkbox{ 
+[type="checkbox"]:checked, td>#checkbox { 
     opacity: 1; 
     pointer-events: auto;
     position: relative;
 }
 
-.page-header{
-    margin: 0.5em;
-    border-bottom: 1px solid rgb(203, 234, 235)
+.page-header {
+    margin: 15px 20px 20px 20px;
 }
 
-.header-box{
+.header-box { 
     h4{
         display:none
     }
 }
 
-.add-bills{
+.add-bills {
 
-
-    .add-header{
-        padding: 0.6rem 0 .656rem 0;
-        margin: 0 auto;
-        font-size: 1.3em;
-        font-weight: bold;
-        line-height: 25px;
+    #amount {
+        width: calc(100% - 3rem);
     }
 
-    .btn{
-        margin: 10px 5px;
+    .prefix {
+        padding: 0 1rem;
+        color: #009688;
+
+        &:hover {
+            color: #0f776d;
+            cursor: pointer;
+        }
+    }
+
+    .add-header {
+        padding: 13px 0 13px 0;
+        font-weight: bold;
+        margin: 0 auto;
+        line-height: 25px;
     }
 }
 
-.bill-table{
+.bill-table {
     margin-bottom: 20px;
-    overflow-x: auto;
+    padding-left: 10px;
 
-    th, tr, td{
+    th, tr, td {
         border-radius: 0;
+        text-transform: capitalize;
     }
     
     tr{
-        &:hover{
+        &:hover {
             background-color: #cfd8dc;
         }
     }
-    
 
+    th:nth-child(n+7), td:last-child {
+        text-align: center;
+    }
 }
 
-@media (max-width: 420px){
-    .header-box{
-        h2{
+.update-form {
+    background-color: whitesmoke;
+    border: 1px solid #b2dfdb;
+    padding: 25px;
+
+
+    .updatebill-header {
+        background-color: #b2dfdb;
+        height: 50px;
+
+        h5 {
+            margin: 0;
+            padding: 12px;
+            font-weight: 500;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .header-box {
+        h2 {
             display:none
         }
 
-        h4{
+        h4 {
             display: block;
         }
+    }
+
+    .bill-table {
+        overflow-x: scroll;
     }
 }
