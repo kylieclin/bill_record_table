@@ -1,6 +1,5 @@
 # <a href="https://kyliechao.com/bill-record-table" target="_blank">Bill Record Table</a>
 Full stack project of a content management application for bill payers to track payments
-
 Click on the title above to visit the live site
 
 ### App Features
