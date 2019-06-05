@@ -94,7 +94,7 @@ class UpdateBill extends Component{
                                 <option value="Credit Card">Credit Card</option>
                                 <option value="Cash">Cash</option>
                                 <option value="Check">Check</option>
-                                <option value="Wire">Wire Wire Transfer</option>
+                                <option value="Wire">Wire Transfer</option>
                             </select>
                         </div>
                         <div className="input-field">

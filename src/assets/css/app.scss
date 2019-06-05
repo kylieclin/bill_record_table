@@ -60,6 +60,15 @@ body {
         }
     }
 
+    th:nth-child(5) {
+        text-align: center;
+    }
+
+    td:nth-child(5) {
+        text-align: right;
+        padding-right: 15px;
+    }
+
     th:nth-child(n+7), td:last-child {
         text-align: center;
     }
