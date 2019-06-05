@@ -19,7 +19,7 @@ const BillsTable = props => {
                         <th>TYPE</th>
                         <th>AMOUNT</th>                            
                         <th>NOTE</th>
-                        <th>COMPLETE</th>
+                        <th>PAID</th>
                         <th>UPDATE</th>
                     </tr>
                 </thead>
