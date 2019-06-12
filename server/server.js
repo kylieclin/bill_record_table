@@ -153,9 +153,9 @@ server.delete('/api/bills/:id',(req,res)=>{
         })
 })
 
-const cronNewTable = cron.schedule('10 * * * *', ()=> {
+const cronNewTable = cron.schedule('* * * * *', ()=> {
     const cronquery = "CREATE TABLE `bills_new` LIKE `bills`; RENAME TABLE `bills` TO `bills_old`, `bills_new` TO `bills`; INSERT INTO `bills` (`id`, `payfrom`, `payto`, `amount`, `added`, `type`, `paid`, `note`) VALUES (19, 'Chase', 'Amy', 1550, '2019-04-14 16:43:17', 'Credit Card', 1, 'Dinner'), (20, 'BofA', 'Kevin', 5520, '2019-05-13 21:24:43', 'Cash', 1, 'Basketball game'), (21, 'chase', 'sephora', 515, '2019-05-15 17:39:26', 'Credit Card', 1, 'lip stick'), (23, 'Chase', 'Trader Goes', 6835, '2019-05-16 12:02:54', 'Credit Card', 0, 'Food'), (25, 'Wells Fargo', 'REI', 8925, '2019-05-18 04:32:20', 'Cash', 1, 'Sports wear'), (28, 'BofA', 'Car wash', 1000, '2019-05-23 00:49:49', 'Credit Card', 0, 'Irvine blvd'), (29, 'Chase', 'Bill', 1800, '2019-05-23 00:51:16', 'Cash', 1, 'drinks'), (30, 'BofA', 'Phone bill', 3050, '2019-05-26 02:32:02', 'Credit Card', 0, 'April phone');";
-
+console.log('cron new')
     database.query(cronquery, (error)=>{
         console.error(error);
     })
@@ -163,8 +163,9 @@ const cronNewTable = cron.schedule('10 * * * *', ()=> {
 
 cronNewTable.start();
 
-const cronDropTable = cron.schedule('12 * * * *', ()=> {
+const cronDropTable = cron.schedule('* * * * *', ()=> {
     const cronDrop = "DROP TABLE `bills_old`";
+    console.log('cron old')
     database.query(cronDrop, (error)=>{
         console.error(error);
     })
